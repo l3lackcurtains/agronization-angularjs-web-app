@@ -1,0 +1,18 @@
+@include minbreakpoint(md) {
+	.container{
+		width: 85%;
+	}
+	.single-map-wrapper{
+		display: none;
+	}
+	.post-box{
+		height: 300px;
+	}
+}
+@include minbreakpoint(sm) {
+	.post-box{
+		margin: 16px auto;
+		width: 350px;
+		height: 250px;
+	}
+}

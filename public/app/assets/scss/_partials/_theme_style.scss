@@ -1,0 +1,360 @@
+// Fonts include
+@font-face {
+  font-family: 'lato';
+  src: url('assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'raleway';
+  src: url('assets/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+// MAin styles
+body{
+	font-family: $main_font;
+	font-size: 15px;
+	line-height: 24px;
+	color: #292f33;
+	background: #f7f7f7;
+}
+h1, h2, h3, h4, h5, h6{
+	font-family: $title_font2;
+}
+
+ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	li{
+		padding: 0;
+		margin: 0;
+	}
+}
+
+button{
+	background: none;
+	border: none;
+}
+p{
+	font-family: $main_font;
+	font-size: 15px;
+	line-height: 24px;
+	color: #292f33;
+}
+a{
+	color: $link_color1;
+	@include transition(all .2s $ease-in-quad);
+	&:hover, &:focus, &:active{
+		color: $link_color1_hover;
+		text-decoration: none;
+	}
+}
+input{
+	border: 0;
+	padding: 8px;
+	@include transition(all .3s $ease-in-quad);
+	&:focus{
+		outline: none;
+	}
+}
+textarea{
+	padding: 8px;
+	@include transition(all .3s $ease-in-quad);
+	&:focus{
+		outline: none;
+	}
+}
+.cplus-input{
+	background: rgba(#fff, 0.96);
+	width: 235px;
+}
+.cplus-input2{
+	border: 1px solid #e3e3e3;
+	width: 100%;
+}
+// upload button
+.cplus-button1{
+	margin-top: 16px;
+	background: $primary_color1;
+	border-radius: 2px;
+	padding: 8px 16px;
+	color: #fff;
+	&:hover{
+		background: $primary_color2;
+	}
+}
+
+
+.cplus-submit{
+	margin-top: 16px;
+	background: $primary_color1;
+	width: 100px;
+	border-radius: 2px;
+	color: #fff;
+	&:hover{
+		background: $primary_color2;
+	}
+}
+
+// NavBar
+.header-top-bar{
+	position: fixed;
+	z-index: 7777;
+	width: 100%;
+	height: 80px;
+	@include card(1);
+	background: $primary_accent1;
+	padding: 16px 0;
+	@include transition(all .2s $ease-in-quad);
+}
+.header-top-bar.attach{
+	padding: 8px 0;
+	height: 64px;
+	background: $primary_accent2;
+}
+
+.main-content-wrapper{
+	padding-top: 80px;
+}
+
+// map wrapper
+.map-wrapper{
+	background: #e2e2e2;
+	height: 485px;
+	position: relative;
+	overflow: hidden;
+	.gmap{
+		width: 100%;
+		height: 100%;
+	}
+	.search-box{
+		position: absolute;
+		left: 0;
+		top: 10%;
+		width: 100%;
+		.search-form {
+			padding: 4px 4px;
+			margin-bottom: 32px;
+			text-align: center;
+			display: block;
+		}
+
+	}
+}
+
+// login wrapper
+.form-wrapper{
+	padding: 60px 0;
+	header{
+		text-align: center;
+		margin-bottom: 32px;
+	}
+	.main-form{
+		margin: 16px auto;
+		text-align: center;
+		@include card(2);
+		background: rgba(#fff, 0.97);
+		padding: 16px;
+		ul{
+			text-align: left;			
+			li{
+				margin: 12px;
+				.field-helper{
+					margin: 8px 0;
+					font-size: 13px;
+					opacity: .87;
+					color: $color5;
+				}
+				.cplus-submit{
+					margin-top: 32px;
+				}
+				.form-meta{
+					opacity: .78;
+					margin-top: 16px;
+				}
+			}
+		}
+	}
+}
+.footer-bottom-wrapper{
+	z-index: 9999;
+	padding: 32px 0;
+	text-align: center;
+	background: $color6;
+	.site-info{
+		color: $color0;
+		a{
+			color: $link_color2;
+			&:hover{
+				color: $link_color2_hover;
+			}
+		}
+	}
+}
+
+
+// Map Search Page
+.content-wrapper{
+	padding: 60px 0;
+}
+
+.single-map-wrapper{
+	position: fixed;
+	left: 0;
+	width: 40%;
+	background: #191919;
+	height: 100%;
+	overflow: hidden;
+	.gmap{
+		width: 100%;
+		height: 100%;
+	}
+}
+.post-box{
+	background: #191919;
+	@include card(1);
+	padding: 8px;
+	position: relative;
+	overflow: hidden;
+	height: 250px;
+	margin: 16px 0px;
+	.post-img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		img{
+			@include transition(.2s all $ease-in-cubic);
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.post-type{
+		position: absolute;
+		top: 0;
+		right: 0;
+		p{
+			background: $primary_color1;
+			padding: 7px;
+			color: #fff;
+		}
+	}
+	.post-meta{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 8px;
+		width: 100%;
+		background: rgba(#191919, 0.15);
+		.fa{
+			padding-right: 6px;
+			color: $color9;
+		}
+		h4{
+			color: $color9;
+		}
+		p{
+			color: #e3e3e3;
+		}
+	}
+}
+
+
+
+
+// BAckgrounds
+.login-wrapper{
+  background-color: $primary_accent5;
+  background: url("images/bg-login.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+.register-wrapper{
+  background-color: $primary_accent5;
+  background: url("images/bg-signup.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+
+// listing form
+.main-form.listing{
+	border: 1px solid #e3e3e3;
+	border-radius: 5px;
+	box-shadow: none;
+	padding: 16px 32px;
+}
+
+
+.listing-header-wrapper{
+	height: 400px;
+	background: #191919;
+	display: table;
+	width: 100%;
+	.listing-details{
+		display: table-cell;
+		padding-bottom: 30px;
+		vertical-align: bottom;
+		.post-type{
+			display: inline-block;
+			background: $primary_color1;
+			padding: 6px;
+			color: #fff;
+			margin-bottom: -8px;
+		}
+		h3, p{
+			color: $color9;
+		}
+		.cplus-button1{
+			margin-top: 20px;
+		}
+	}
+}
+
+//listing content and sidebar
+.listing-content, .listing-widget, .listing-contact{
+	background: #fff;
+	border: 1px solid #e3e3e3;
+	padding: 16px;
+	margin-bottom: 32px;
+	h4{
+		display: inline-block;
+		padding-bottom: 8px;
+		border-bottom: 2px solid $primary_color1;
+	}
+}
+.listing-author{
+	text-align: center;
+	img{
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+	}
+}
+.listing-contact{
+	.icon-box{
+		margin: 32px 0;
+		text-align: center;
+		.fa{
+			font-size: 25px;
+			height: 72px;
+			width: 72px;
+			margin: 0 auto;
+			text-align: center;
+			@include vCenter();
+			color: $color9;
+			border-radius: 50%;
+			@include card(1);
+			background: $primary_color1;
+		}
+		p{
+			margin-top: 16px;
+		}
+
+	}
+}

@@ -1,0 +1,37 @@
+/*
+Theme Name: crunchplus
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: crunchplus
+Tags:
+
+
+*/
+
+@import "bourbon/_bourbon";
+@import "_partials/variables";
+@import "_partials/mixins";
+
+/*========================================================================
+****************************  External  *******************************
+========================================================================== */
+@import "_partials/_theme_external";
+
+/*========================================================================
+****************************  Theme style  *******************************
+========================================================================== */
+@import "_partials/_theme_menu";
+@import "_partials/_theme_animations";
+@import "_partials/_theme_style";
+@import "_partials/_theme_single";
+
+/*========================================================================
+****************************  Responsive  *******************************
+========================================================================== */
+
+@import "_partials/_responsive";

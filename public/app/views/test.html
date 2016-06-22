@@ -1,0 +1,8 @@
+<form ng-controller="MyCtrl as up" name="up.upload_form">
+  <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="10MB"/>
+  <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+  <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+  {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+  <button type="submit" ng-click="up.submit()">Upload</button>
+
+</form>

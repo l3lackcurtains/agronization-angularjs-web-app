@@ -1,0 +1,68 @@
+<div ng-controller="AgroSingleController as agroSingle">
+<div class="listing-header-wrapper" style='background: #191919 url("{{agroSingle.agroData.message.org_image}}") no-repeat;  background-attachment: fixed;  background-size: cover;  background-position: center; '>
+    <div class="listing-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-xs-8">
+                <p class="post-type">{{agroSingle.agroData.message.org_type}}</p>
+                    <h3>{{agroSingle.agroData.message.org_name}}</h3>
+                    <p><i class="fa fa-location-arrow"></i> {{agroSingle.agroData.message.org_location}}</p>
+                </div>
+                <div class="col-sm-3 col-xs-4">
+                    <button class="cplus-button1">Submit Listing</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="listing-content">
+                    <h4>Description: </h4>
+                    <p>{{agroSingle.agroData.message.org_desc}}</p>
+                </div>
+                <div class="listing-contact">
+                    <h4>Contact Info: </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-phone"></i>
+                                <p>{{agroSingle.agroData.message.org_phone_number}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-envelope"></i>
+                                <p>{{agroSingle.agroData.message.org_email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-laptop"></i>
+                                <p>{{agroSingle.agroData.message.org_website}}</p>
+                            </div>
+                        </div>      
+                    </div>                 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="listing-widget">
+                    <div class="listing-map">
+                        <ng-map default-style="false" zoom="12" center="[{{ag.org_location_lat}}, {{ag.org_location_lan}}]" style="height: 100%">
+                            <marker ng-repeat="ag in agroSingle.agroData.message" title="{{ag.org_name}}" position="{{ag.org_location_lat}},{{ag.org_location_lan}}"></marker>
+                        </ng-map>
+                    </div>
+                </div> 
+                <div class="listing-widget">
+                    <div class="listing-author">
+                        <img src="images/5.jpg" alt="">
+                        <h3>Madhav Poudel</h3>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </div>       
+</div>
+</div>
