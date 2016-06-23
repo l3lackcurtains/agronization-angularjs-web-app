@@ -96,8 +96,8 @@ agroctrl.controller('AgroPostController',function(Upload, Agro, NgMap, $location
         agroPost.markerPos = agroPost.place.geometry.location;
         agroPost.agroData.location_lat = agroPost.place.geometry.location.lat;
         agroPost.agroData.location_lan = agroPost.place.geometry.location.lng;
-      }
-      NgMap.getMap().then(function(map) {
+      };
+    NgMap.getMap().then(function(map) {
         agroPost.map = map;
       });
 

@@ -8,12 +8,10 @@ var jwt        = require('jsonwebtoken');
 var multer     = require('multer');
 var bcrypt     = require('bcrypt-nodejs');
 
-
 var config     = require('./app/config');
 var User       = require("./app/models/user");
 var Ag         = require("./app/models/agro");
-
-var AgRouter   = require('./app/routes/agro');
+var AgRouter   = require('./app/routes/api');
 var UserRouter = require('./app/routes/user');
 
 app.set('appSecret', config.secret);
@@ -23,7 +21,7 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 3000;
 
 // Database connection
-mongoose.connect( config.database , function(err, database){
+mongoose.connect( config.database_local , function(err, database){
 	console.log("Connected to database successfully.");
 });
 app.use(morgan('dev'));
@@ -77,4 +75,4 @@ app.listen(port, function(){
 	console.log("Listening to port 3000");
 });
 
-console.log("connected..");
+

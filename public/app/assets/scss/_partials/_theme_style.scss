@@ -1,15 +1,15 @@
 // Fonts include
 @font-face {
-  font-family: 'lato';
-  src: url('assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'lato';
+	src: url('assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-  font-family: 'raleway';
-  src: url('assets/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'raleway';
+	src: url('assets/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 // MAin styles
 body{
@@ -51,6 +51,9 @@ a{
 		text-decoration: none;
 	}
 }
+@include selection {
+	background-color: $primary_color2;
+}
 input{
 	border: 0;
 	padding: 8px;
@@ -74,19 +77,6 @@ textarea{
 	border: 1px solid #e3e3e3;
 	width: 100%;
 }
-// upload button
-.cplus-button1{
-	margin-top: 16px;
-	background: $primary_color1;
-	border-radius: 2px;
-	padding: 8px 16px;
-	color: #fff;
-	&:hover{
-		background: $primary_color2;
-	}
-}
-
-
 .cplus-submit{
 	margin-top: 16px;
 	background: $primary_color1;
@@ -97,11 +87,30 @@ textarea{
 		background: $primary_color2;
 	}
 }
-
+.cplus-select{
+	padding: 9px;
+	border: none;
+	&:focus{
+		outline: none;
+	}
+	option{
+		border: none;
+	}
+}
+.cplus-button1{
+	margin-top: 16px;
+	background: $primary_color1;
+	border-radius: 2px;
+	padding: 8px 16px;
+	color: #fff;
+	&:hover{
+		background: $primary_color2;
+	}
+}
 // NavBar
 .header-top-bar{
 	position: fixed;
-	z-index: 7777;
+	z-index: 99;
 	width: 100%;
 	height: 80px;
 	@include card(1);
@@ -136,7 +145,6 @@ textarea{
 		width: 100%;
 		.search-form {
 			padding: 4px 4px;
-			margin-bottom: 32px;
 			text-align: center;
 			display: block;
 		}
@@ -158,7 +166,7 @@ textarea{
 		background: rgba(#fff, 0.97);
 		padding: 16px;
 		ul{
-			text-align: left;			
+			text-align: left;
 			li{
 				margin: 12px;
 				.field-helper{
@@ -179,7 +187,7 @@ textarea{
 	}
 }
 .footer-bottom-wrapper{
-	z-index: 9999;
+	z-index: 98;
 	padding: 32px 0;
 	text-align: center;
 	background: $color6;
@@ -203,6 +211,7 @@ textarea{
 .single-map-wrapper{
 	position: fixed;
 	left: 0;
+	padding-top: 80px;
 	width: 40%;
 	background: #191919;
 	height: 100%;
@@ -215,6 +224,7 @@ textarea{
 .post-box{
 	background: #191919;
 	@include card(1);
+	cursor: pointer;
 	padding: 8px;
 	position: relative;
 	overflow: hidden;
@@ -230,6 +240,11 @@ textarea{
 			@include transition(.2s all $ease-in-cubic);
 			width: 100%;
 			height: 100%;
+		}
+	}
+	&:hover{
+		.post-img img{
+			@include transform( scale(1.021));
 		}
 	}
 	.post-type{
@@ -265,20 +280,20 @@ textarea{
 
 
 
-// BAckgrounds
-.login-wrapper{
-  background-color: $primary_accent5;
-  background: url("images/bg-login.jpg") no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+// Backgrounds
+.main-content-wrapper.login{
+	background-color: $primary_accent5;
+	background: url("images/bg-login.jpg") no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 }
-.register-wrapper{
-  background-color: $primary_accent5;
-  background: url("images/bg-signup.jpg") no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+.main-content-wrapper.signup{
+	background-color: $primary_accent5;
+	background: url("images/bg-signup.jpg") no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 }
 
 
@@ -290,12 +305,12 @@ textarea{
 	padding: 16px 32px;
 }
 
-
 .listing-header-wrapper{
 	height: 400px;
 	background: #191919;
 	display: table;
 	width: 100%;
+	color: $color9;
 	.listing-details{
 		display: table-cell;
 		padding-bottom: 30px;
@@ -311,7 +326,7 @@ textarea{
 			color: $color9;
 		}
 		.cplus-button1{
-			margin-top: 20px;
+			margin-top: 8px;
 		}
 	}
 }
@@ -357,4 +372,111 @@ textarea{
 		}
 
 	}
+}
+
+
+// DashBoard Page
+.admin-menu-wrapper{
+	position: fixed;
+	top: 80px;
+	z-index:77;
+	left: 0;
+	width: 220px;
+	height: 100%;
+	@include card(2);
+	@include transform( translate(-220px,0));
+	@include transition(.3s all $ease-in-cubic);
+	background: $color1;
+	ul{
+		li{
+			padding: 16px;
+			border-bottom: 1px solid #333;
+			@include transition(.2s all $ease-in-cubic);
+			cursor: pointer;
+			a{
+				color: #fff;
+				.fa{
+					padding-right: 8px;
+				}
+			}
+			&:hover{
+				background: #333;
+			}
+		}
+	}
+	.admin-menu-toggle{
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		right: -40px;
+		width: 40px;
+		padding: 8px;
+		background: #fff;
+		border: 1px solid #e3e3e3;
+		.fa{
+			font-size: 24px;
+		}
+	}
+}
+.admin-menu-wrapper.show{
+	@include transform( translate(0,0));
+}
+
+
+.admin-content-wrapper{
+	min-height: 600px;
+	padding: 16px 0px;
+}
+
+.event-box, .agriculture-box{
+	h2{
+		padding: 8px;
+		border: 2px solid $primary_accent1;
+		display: inline-block;
+	}
+	ul{
+		background: #fff;
+		border: 1px solid #e3e3e3;
+		border-radius: 5px;
+		margin: 24px 0;
+		padding: 16px;
+		li{
+			padding: 6px 0px;
+			border-bottom: 1px solid #e9e9e9;
+			&:last-child{
+				border-bottom: none;
+			}
+			.post-meta{
+				opacity: .60;
+				border: none;
+				margin: 0;
+				font-size: 14px;
+				padding: 0;
+				li{
+					display: inline-block;
+					padding-right: 8px;
+					border: none;
+				}
+			}
+		}
+	}
+
+}
+
+// overlay
+.overlay-wrapper{
+	background: rgba( #000, 0.47);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 66;
+	animation: fadeIn .3s ;
+	@include transition(.3s all $ease-in-cubic);
+	visibility: hidden;
+}
+.overlay-wrapper.show{
+	visibility: visible;
+	animation: fadeIn .3s ;
 }

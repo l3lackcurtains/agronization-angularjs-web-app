@@ -8,6 +8,10 @@
                 <div class="search-form">
                     <form class="form" ng-submit="agro.doSearch()">
                         <input type="text" class="cplus-input" placeholder="Find Agro stuffs" ng-model="agro.agro_query">
+                        <select class="cplus-select" ng-model="selectedItem">
+                            <option value="Organizations" selected>Organizations</option>
+                            <option value="Events">Events</option>
+                        </select>
                         <input type="submit" class="cplus-submit" value="Search">
                     </form>
                 </div>

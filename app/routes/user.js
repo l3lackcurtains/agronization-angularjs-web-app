@@ -12,7 +12,8 @@ function createToken(user){
 	var token = jwt.sign({
 		id: user._id,
 		name: user.name,
-		email: user.email
+		email: user.email,
+		is_admin: user.is_admin
 	}, app.get('appSecret') , {} );
 	return token;
 }
@@ -25,7 +26,7 @@ router.post('/signup', function(req, res){
 	var token = createToken(user);
 	user.save(function(err){
 		if(err){
-			res.send(err);
+			res.send({status: false, message: err});
 			return;
 		}
 		res.json({status: true, message: "User has been Created.", token: token});

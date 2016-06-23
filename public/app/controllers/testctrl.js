@@ -7,8 +7,9 @@ testctrl.controller('MyCtrl',function(Upload){
         if (vm.upload_form.file.$valid && vm.file) { 
             vm.upload(vm.file); 
         }
-    }
-    vm.upload = function (file) {
+    };
+
+        vm.upload = function (file) {
         Upload.upload({
             url: '/upload', 
             data:{file: file}
