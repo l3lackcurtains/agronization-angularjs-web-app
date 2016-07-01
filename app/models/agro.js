@@ -19,16 +19,42 @@ var AgroSchema   = new Schema({
         type: String,
         required: true,
     },
-    org_phone_number: String,
-    org_email: String,
-    org_website: String,
-    org_location_lat: String,
-    org_location_lan: String,
-    org_image: String,
-    is_approved: Boolean,
+    org_phone_number: {
+        type: String,
+        default: ''
+    },
+    org_email: {
+        type: String,
+        default: ''
+    },
+    org_website: {
+        type: String,
+        default: ''
+    },
+    org_location_lat: {
+        type: String,
+        default: 1
+    },
+    org_location_lan: {
+        type: String,
+        default: 1
+    },
+    org_image: {
+        type: String,
+        default: ''
+    },
+    org_doc: {
+        type: String,
+        default: ''
+    },
+    is_approved: {
+        type: Boolean,
+        default: false
+    },
     user_id: String,
     posted_by: String
 });
 AgroSchema.index({ org_name: 'text', org_desc: 'text', org_type: 'text', org_location: "text" });
+
 
 module.exports = mongoose.model('Agro', AgroSchema);

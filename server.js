@@ -7,6 +7,10 @@ var mongoose   = require('mongoose');
 var jwt        = require('jsonwebtoken');
 var multer     = require('multer');
 var bcrypt     = require('bcrypt-nodejs');
+var connect    = require('connect');
+var fs         = require('fs');
+var cookieParser = require('cookie-parser')
+
 
 var config     = require('./app/config');
 var User       = require("./app/models/user");
@@ -17,6 +21,7 @@ var UserRouter = require('./app/routes/user');
 app.set('appSecret', config.secret);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 var port = process.env.PORT || 3000;
 
@@ -65,6 +70,25 @@ var upload = multer({
          res.json({status: true, message: { filename: req.file.filename, filepath: "/uploads/"+req.file.filename }});
     })
 });
+
+// Image upload from Android Application
+
+app.post('/uploads', function(req, res) {
+  console.log(req.files.image.originalFilename);
+  console.log(req.files.image.path);
+    fs.readFile(req.files.image.path, function (err, data){
+      var dirname = "/public/app";
+      var newPath = dirname + "/uploads/" +   req.files.image.originalFilename;
+      fs.writeFile(newPath, data, function (err) {
+      if(err){
+      res.json({'response':"Error"});
+      }else {
+      res.json({'response':"Saved"});     
+      }
+    });
+  });
+});
+
 
 // Angular App Route
 app.get('/*', function(req, res){

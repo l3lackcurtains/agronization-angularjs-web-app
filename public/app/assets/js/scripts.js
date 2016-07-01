@@ -1,93 +1,7 @@
+var admin_menu = $('.navbar-side');
+var admin_menu = $('.admin-menu-wrapper');
+var overlay    = $('.overlay-wrapper');
 
-
-
-
-/*=====================================================
-Google MAp
-========================================================
-*/
-
-var placeSearch, autocomplete;
-      function initMap() {
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-            {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
-      }
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        var location1 = "<b>Location: </b>"+ place.formatted_address + "<br/>";
-        location1 += "<b>Latitude: </b>"+ place.geometry.location.lat() + "</br>";
-        location1 += "<b>Longitude: </b>" + place.geometry.location.lng() + "<br/>";
-        document.getElementById('location1').innerHTML = location1;
-      }
-
-      
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
-      function geolocate() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            console.log(geolocation.lat + " -- " + geolocation.lng);
-            var circle = new google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-          });
-        }
-      }
-
-
-
-
-
-
-
-
-
-
-/*=====================================================
-Scroll Property
-========================================================
-*/
-//variables
-var top_bar = $('.header-top-barr');
-var scrolltop = $('.scroll-top');
-
-$(window).scroll(function(){
-  // Sticky header
-  if(window.scrollY > 10){
-      top_bar.addClass("attach");
-
-  }else{
-      top_bar.removeClass("attach");
-  }
-
-  // scroll top
-  if(window.scrollY > 300){
-      scrolltop.addClass("show");
-  }else{
-      scrolltop.removeClass("show");
-  }
-
-});
-
-
-/*=====================================================
-full screen header
-========================================================
-*/
 
 function header_property() {
   $window_height = $(window).height(),
@@ -109,7 +23,18 @@ After document is ready ********************************
 
 $(document).ready(function() {
 
-  /*=====================================================
+  $(".admin-menu-toggle").on("click", function(){
+    if( admin_menu.hasClass("show") ){
+      admin_menu.removeClass("show");
+      overlay.removeClass("show");
+    }else{
+      admin_menu.addClass("show");
+      overlay.addClass("show");
+    }
+  });
+
+
+/*=====================================================
 Parallax Effects
 ========================================================
 */
@@ -153,6 +78,7 @@ Scroll Property
     cursorborder: "none",
     zindex: "9999"
   });
+
 
 
 });

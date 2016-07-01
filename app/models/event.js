@@ -29,10 +29,14 @@ var EventSchema   = new Schema({
     ev_location_lat: String,
     ev_location_lan: String,
     ev_image: String,
-    is_approved: Boolean,
+    is_approved: {
+        type: Boolean,
+        default: false
+    },
     user_id: String,
     posted_by: String
 });
 EventSchema.index({ ev_name: 'text', ev_desc: 'text', ev_type: 'text', ev_location: "text" });
+
 
 module.exports = mongoose.model('Event', EventSchema);

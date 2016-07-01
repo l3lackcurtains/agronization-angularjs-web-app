@@ -31,6 +31,7 @@ userSchema.pre('save', function(next){
 
         user.created_at = date;
         user.password = hash;
+        user.is_admin = false;
         next();
     });
 

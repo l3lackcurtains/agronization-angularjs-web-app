@@ -9,8 +9,19 @@ var Event      = require("../models/event");
 
 app.set('appSecret', config.secret);
 
-// Get All Agro data
+// Get Approved Agro data
 router.route('/agro')
+.get(function(req, res){
+	Agro.find({is_approved: true}, function(err, data){
+		if(err){
+			res.send({status: false, message: err});
+		}
+		res.json({status: true, message: data});
+	})
+});
+
+// Get All Agro data
+router.route('/allagro')
 .get(function(req, res){
 	Agro.find(function(err, data){
 		if(err){
@@ -34,7 +45,7 @@ router.route('/agro/:id')
 // Get Searched Agro Data
 router.route('/agros/:query')
 .get(function(req, res){
-	Agro.find({ $text: { $search: req.params.query } }, function(err, data) {
+	Agro.find({ $text: { $search: req.params.query }, is_approved: true }, function(err, data) {
         if (err) return res.status(500).json({status: false, error: "Error fetching data", message: err});
         if(data.length != 0 ){
 	        res.json({status: true, message: data});
@@ -45,8 +56,19 @@ router.route('/agros/:query')
 });
 
 
-// Get All Event data
+// Get Approved Event data
 router.route('/event')
+.get(function(req, res){
+	Event.find({is_approved: true}, function(err, data){
+		if(err){
+			res.send({status: false, message: err});
+		}
+		res.json({status: true, message: data});
+	})
+});
+
+// Get All Event data
+router.route('/allevent')
 .get(function(req, res){
 	Event.find(function(err, data){
 		if(err){
@@ -70,7 +92,7 @@ router.route('/event/:id')
 // Get Searched Event Data
 router.route('/events/:query')
 .get(function(req, res){
-	Event.find({ $text: { $search: req.params.query } }, function(err, data) {
+	Event.find({ $text: { $search: req.params.query }, is_approved: true }, function(err, data) {
         if (err) return res.status(500).json({status: false, error: "Error fetching data", message: err});
         if(data.length != 0 ){
 	        res.json({status: true, message: data});
@@ -111,9 +133,9 @@ router.route('/agro')
 
 	agro.save(function(err, data){
 		if(err){
-			res.send(err);
+			res.send({status: false, message: err});
 		}
-		res.json(data);
+		res.json({status: true, message: data});
 	});
 });
 
@@ -135,12 +157,13 @@ router.route('/agro/:id')
 		data.org_email = req.body.org_email;
 		data.org_website = req.body.org_website;
 		data.org_image = req.body.org_image;
+		data.is_approved = req.body.is_approved;
 
 		data.save(function(err, data){
 			if(err){
-				res.send(err);
+			res.send({status: false, message: err});
 			}
-			res.json(data);
+			res.json({status: true, message: data});
 		});
 	});
 })

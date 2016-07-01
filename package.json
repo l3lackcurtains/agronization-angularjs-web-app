@@ -9,6 +9,8 @@
   "dependencies": {
     "bcrypt-nodejs": "*",
     "body-parser": "*",
+    "connect": "^3.4.1",
+    "cookie-parser": "^1.4.3",
     "express": "*",
     "fs": "0.0.2",
     "jsonwebtoken": "*",

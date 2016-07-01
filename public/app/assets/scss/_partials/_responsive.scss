@@ -8,11 +8,28 @@
 	.post-box{
 		height: 300px;
 	}
+
 }
 @include minbreakpoint(sm) {
 	.post-box{
 		margin: 16px auto;
 		width: 350px;
 		height: 250px;
+	}
+}
+
+// above md size
+@include maxbreakpoint(md) {
+	.admin-menu-toggle{
+		visibility: hidden;
+	}
+	.admin-menu-wrapper{
+		@include transform( translate(0,0));
+	}
+	.admin-content-wrapper{
+		margin-left: 220px;
+	}
+	.event-box, .agriculture-box{
+		margin-right: 40px;
 	}
 }

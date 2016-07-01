@@ -27,7 +27,13 @@ route.config(function($routeProvider, $locationProvider){
 		.when('/agriculture/:id/:name', {
 			templateUrl: "views/listing.html"
 		})
-		.otherwise({ redirectTo: '/' });
+		.when('/dashboard', {
+			templateUrl: "views/admin/dashboard.html"
+		})
+		.when('/404', {
+			templateUrl: "views/404.html"
+		})
+		.otherwise({ redirectTo: '/404' });
 
 	$locationProvider.html5Mode(true);
 });

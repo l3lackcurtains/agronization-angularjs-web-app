@@ -21,7 +21,8 @@ router.post('/signup', function(req, res){
 	var user = new User({
 		email: req.body.email,
 		password: req.body.password,
-		name: req.body.name
+		name: req.body.name,
+		is_admin: req.body.is_admin
 	});
 	var token = createToken(user);
 	user.save(function(err){
@@ -34,7 +35,7 @@ router.post('/signup', function(req, res){
 });
 
 router.post('/signin', function(req, res){
-	User.findOne( {email: req.body.email }).select('name email password').exec(function(err, user){
+	User.findOne( {email: req.body.email }).select('name email password is_admin').exec(function(err, user){
 		if(err) throw err;
 		if(!user){
 			res.send({message: "User doesn't exists"});

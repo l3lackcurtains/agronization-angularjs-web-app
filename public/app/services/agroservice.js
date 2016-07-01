@@ -3,9 +3,15 @@ var agroser = angular.module('agroService', []);
 agroser.factory('Agro', function($http){
 
 	var agroFactory = {};
-
+	// agro
 	agroFactory.getAgro = function(){
 		return $http.get('/api/agro');
+	};
+	agroFactory.getAllAgro = function(){
+		return $http.get('/api/allagro');
+	};
+	agroFactory.delAgro = function(id){
+		return $http.delete('/api/agro/'+id);
 	};
 	agroFactory.getSingleAgro = function(id){
 		return $http.get('/api/agro/'+id);
@@ -14,6 +20,26 @@ agroser.factory('Agro', function($http){
 	agroFactory.getAgros = function(query){
 		return $http.get('/api/agros/'+query);
 	};
+
+	//event
+	agroFactory.getEvent = function(){
+		return $http.get('/api/event');
+	};
+	agroFactory.getAllEvent = function(){
+		return $http.get('/api/allevent');
+	};
+	agroFactory.delEvent = function(id){
+		return $http.delete('/api/event/'+id);
+	};
+	agroFactory.getSingleEvent = function(id){
+		return $http.get('/api/event/'+id);
+	};
+
+	agroFactory.getEvents = function(query){
+		return $http.get('/api/events/'+query);
+	};
+	
+	
 
 	agroFactory.postAgro = function(name, type, desc, location, phone_number, email, website, location_lat, location_lan, image){
 
@@ -30,6 +56,37 @@ agroser.factory('Agro', function($http){
 			org_image: image
 		}).success(function(data){
 			console.log("Organization submitted successfully.");
+			return data;
+		});
+	};
+
+	agroFactory.putAgro = function(id, name, type, desc, location, phone_number, email, website, location_lat, location_lan, image){
+
+		return $http.put('/api/agro/'+id, {
+			org_name: name,
+			org_type: type,
+			org_desc: desc,
+			org_location: location,
+			org_phone_number: phone_number,
+			org_email: email,
+			org_website: website,
+			org_location_lat: location_lat,
+			org_location_lan: location_lan,
+			org_image: image
+		}).success(function(data){
+			console.log("Organization Edited successfully.");
+			return data;
+		});
+	};
+
+	agroFactory.approveAgro = function(id, status, name, type, desc, location){
+		return $http.put('/api/agro/'+id, {
+			org_name: name,
+			org_type: type,
+			org_desc: desc,
+			org_location: location,
+			is_approved: status
+		}).success(function(data){
 			return data;
 		});
 	};

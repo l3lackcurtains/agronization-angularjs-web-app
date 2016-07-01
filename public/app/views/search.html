@@ -17,22 +17,48 @@
                 </div>
                 <h3>Search Results for "{{ags.query}}"</h3>
             </header>
-            <div class="row">
-                <div class="col-sm-6" ng-repeat="ag in ags.agrosData.message">
-                    <div class="post-box">
-                        <div class="post-img" ng-click="ags.gotoAgroDetail(ag._id, ag.org_name)">
-                            <img ng-src="{{ag.org_image}}" alt="">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Organizations">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <div class="col-sm-6" ng-repeat="ag in agro.agroData.message">
+                                <div class="post-box" ng-click="agro.gotoAgroDetail(ag._id, ag.org_name)">
+                                    <div class="post-img">
+                                        <img ng-src="{{ag.org_image}}" alt="">
+                                    </div>
+                                    <div class="post-type">
+                                        <p>{{ag.org_type}}</p>
+                                    </div>
+                                    <div class="post-meta">
+                                        <h4>{{ag.org_name}}</h4>
+                                        <p><i class="fa fa-location-arrow"></i>{{ag.org_location}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="post-type">
-                            <p>{{ag.org_type}}</p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Events">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <div class="col-sm-6" ng-repeat="ag in agro.agroData.message">
+                                <div class="post-box" ng-click="agro.gotoAgroDetail(ag._id, ag.org_name)">
+                                    <div class="post-img">
+                                        <img ng-src="{{ag.org_image}}" alt="">
+                                    </div>
+                                    <div class="post-type">
+                                        <p>{{ag.org_type}}</p>
+                                    </div>
+                                    <div class="post-meta">
+                                        <h4>{{ag.org_name}}</h4>
+                                        <p><i class="fa fa-location-arrow"></i>{{ag.org_location}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="post-meta">
-                            <h4>{{ag.org_name}}</h4>
-                            <p><i class="fa fa-location-arrow"></i>{{ag.org_location}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
         </div>
     </div>
 </div>

@@ -1,8 +1,16 @@
-.single-map{
-	height: 560px;
-	background: #e3e3e3;
-	.map{
-		height: 100%;
-		width: 100%;
-	}
+
+// Backgrounds
+.login-wrapper{
+  background-color: $primary_accent5;
+  background: url("images/bg-login.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+.register-wrapper{
+  background-color: $primary_accent5;
+  background: url("images/bg-signup.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }

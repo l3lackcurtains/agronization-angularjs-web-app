@@ -1,10 +1,24 @@
 var main = angular.module('mainCtrl', []);
 
-main.controller("MainController", function($rootScope, $location, Auth, NgMap){
+main.controller("MainController", function($scope, $rootScope, $location,Auth, NgMap, $mdToast){
 	var main = this;
 
 	// Is Logged In
 	main.LoggedIn = Auth.isLoggedIn();
+
+	
+	// Check if user is Admin or not
+
+
+	Auth.getUser().then(function(user){
+		$scope.currentUser = user;
+		console.log(user);
+		if(user.is_admin){
+			main.isAdmin = true;
+		}else{
+			main.isAdmin = false;
+		}
+	});
 
 	$rootScope.$on('$routeChangeStart', function(){
 		main.LoggedIn = Auth.isLoggedIn();
@@ -24,7 +38,10 @@ main.controller("MainController", function($rootScope, $location, Auth, NgMap){
 				});
 			if(data.status){
 				$location.path('/');
+				$scope.showInfo("Sucessfully Logged In!");
+				
 			}else{
+				$scope.showInfo("Something went wrong");
 				main.error = data.message;
 			}
 		});
@@ -33,8 +50,10 @@ main.controller("MainController", function($rootScope, $location, Auth, NgMap){
 		Auth.register(main.registerData.email, main.registerData.password, main.registerData.name)
 		.success(function(data){
 			if(data.status){
+				$scope.showInfo("User Registered");
 				$location.path('/login');
 			}else{
+				$scope.showInfo("Something went wrong.");
 				main.error = data.message;
 			}
 		});
@@ -44,5 +63,63 @@ main.controller("MainController", function($rootScope, $location, Auth, NgMap){
 		Auth.logout();
 		$location.path('/');
 	};
+
+	var last = {
+	      bottom: true,
+	      top: false,
+	      left: false,
+	      right: true
+	    };
+	  main.toastPosition = angular.extend({},last);
+	  main.getToastPosition = function() {
+	    sanitizePosition();
+	    return Object.keys(main.toastPosition)
+	      .filter(function(pos) { return main.toastPosition[pos]; })
+	      .join(' ');
+	  };
+	  function sanitizePosition() {
+	    var current = main.toastPosition;
+	    if ( current.bottom && last.top ) current.top = false;
+	    if ( current.top && last.bottom ) current.bottom = false;
+	    if ( current.right && last.left ) current.left = false;
+	    if ( current.left && last.right ) current.right = false;
+	    last = angular.extend({},current);
+	  }
+	  
+
+	  main.showActionToast = function() {
+	    var pinTo = main.getToastPosition();
+	    var toast = $mdToast.simple()
+	      .textContent('Marked as read')
+	      .action('UNDO')
+	      .highlightAction(true)
+	      .highlightClass('md-accent')// Accent is used by default, this just demonstrates the usage.
+	      .position(pinTo);
+	    $mdToast.show(toast).then(function(response) {
+	      if ( response == 'ok' ) {
+	        alert('You clicked the \'UNDO\' action.');
+	      }
+	    });
+	  };
+	  $scope.showInfo = function(info) {
+	    var pinTo = main.getToastPosition();
+	    $mdToast.show(
+	      $mdToast.simple()
+	        .textContent(info)
+	        .position(pinTo )
+	        .hideDelay(3000)
+	    );
+	 };
+
+
+    $rootScope.$on("showinfo", function(){
+       $scope.showInfo();
+    });
+    $scope.isOpen = false;
+      $scope.demo = {
+        isOpen: false,
+        count: 0,
+        selectedDirection: 'left'
+      };
 
 });

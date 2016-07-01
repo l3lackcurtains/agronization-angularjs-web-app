@@ -1,0 +1,160 @@
+<div class="admin-menu-wrapper">
+    <div class="admin-menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul>
+      <li>
+        <a href=""><i class="fa fa-glass"></i> Dashboard</a>
+      </li>
+      <li>
+        <a href="#agriculture" data-scroll><i class="fa fa-tree"></i> Agriculture</a>
+      </li>
+      <li>
+        <a href="#events" data-scroll><i class="fa fa-newspaper-o"></i> Events / Trannings</a>
+      </li>
+      <li>
+        <a href=""><i class="fa fa-user"></i> Users</a>
+      </li>
+      <li>
+        <a href=""><i class="fa fa-cog"></i> Settings</a>
+      </li>
+    </ul>
+
+</div>
+<div class="admin-content-wrapper" ng-controller="DashController as dash">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- agriculture box -->
+                <div id="agriculture" class="agriculture-box">
+                    <h2>Agriculture Posts</h2>
+                    <ul>
+                        <li ng-repeat="dashAgro in dash.agroData">
+                            <div class="post-content">
+                                <h4>{{dashAgro.org_name}}</h4>
+                            </div>
+                            <ul class="post-meta">
+                               <li>
+                                    <md-checkbox ng-change="dash.doApproveAgro(dashAgro._id, dashAgro.is_approved, dashAgro.org_name, dashAgro.org_type, dashAgro.org_desc, dashAgro.org_location)"  ng-model="dashAgro.is_approved" aria-label="Checkbox 1"></md-checkbox>
+                               </li>
+                               <li><md-button class="md-icon-button md-primary" data-toggle="modal" data-target="#myModal-{{dashAgro._id}}"><i class="fa fa-edit"></i></md-button></li>
+                               <li><md-button class="md-icon-button md-warn" ng-click="dash.dashDel(dashAgro._id)"><i class="fa fa-close"></i></md-button></li>
+                            </ul>
+                            <div class="modal fade" id="myModal-{{dashAgro._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Edit Agriculture Information.</h4>
+                                  </div>
+                                  <form name="dash.agroPost_form" ng-submit="dash.doPutAgro(dashAgro._id, dashAgro.org_name, dashAgro.org_type, dashAgro.org_desc, dashAgro.org_location, dashAgro.org_phone_number, dashAgro.org_email, dashAgro.org_website, dashAgro.org_location_lat, dashAgro.org_location_lan, dashAgro.org_image)">
+                                  <div class="modal-body">
+                                    <!-- Edit entire agriculture data from here -->
+                                    <ul>
+                                      <li>
+                                        <md-input-container>
+                                          <label>Organization name</label>
+                                          <input ng-model="dashAgro.org_name">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Organization Type</label>
+                                          <input ng-model="dashAgro.org_type">
+                                        </md-input-container>
+                                      </li>
+                                      <li>
+                                        <md-input-container class="md-block">
+                                        <label>Description</label>
+                                        <textarea ng-model="dashAgro.org_desc" rows="20" md-select-on-focus></textarea>
+                                        </md-input-container>
+                                      </li>
+                                      <li>
+                                        <md-input-container>
+                                          <label>Phone Number</label>
+                                          <input ng-model="dashAgro.org_phone_number">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Email</label>
+                                          <input ng-model="dashAgro.org_email">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Website</label>
+                                          <input ng-model="dashAgro.org_website">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Location</label>
+                                          <input ng-model="dashAgro.org_location">
+                                        </md-input-container>
+                                      </li>
+                                      <li>
+                                        <md-input-container>
+                                          <label>Location Latitude</label>
+                                          <input ng-model="dashAgro.org_location_lat">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Location Longitude</label>
+                                          <input ng-model="dashAgro.org_location_lan">
+                                        </md-input-container>
+                                      </li>
+                                      <li>
+                                        <md-input-container>
+                                          <label>Image Url</label>
+                                          <input ng-model="dashAgro.org_image">
+                                        </md-input-container>
+                                        <md-input-container>
+                                          <label>Document Url</label>
+                                          <input ng-model="dashAgro.org_doc">
+                                        </md-input-container>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="cplus-button1" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="cplus-button1" >Save changes</button>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- events box -->
+                <div id="events" class="event-box">
+                    <h2>Events / Trannings</h2>
+                    <ul>
+                        <li>
+                            <div class="post-content">
+                                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+                            </div>
+                            <ul class="post-meta">
+                               <li style="color: #191919">Approve</li>
+                               <li data-toggle="modal" data-target="#myModal">Edit</li>
+                               <li style="color: red;" >Delete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="post-content">
+                                <h4>consectetur adipisicing elit. Odio at corporis est voluptas</h4>
+                            </div>
+                            <ul class="post-meta">
+                               <li style="color: #191919">Approve</li>
+                               <li data-toggle="modal" data-target="#myModal">Edit</li>
+                               <li style="color: red;" >Delete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="post-content">
+                                <h4>porro quod aliquam officia. Recusandae, ratione earum atque.</h4>
+                            </div>
+                            <ul class="post-meta">
+                               <li style="color: #191919">Approve</li>
+                               <li data-toggle="modal" data-target="#myModal">Edit</li>
+                               <li style="color: red;">Delete</li>
+                            </ul>                          
+                        </li>
+                    </ul>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>

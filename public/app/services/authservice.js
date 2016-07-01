@@ -32,7 +32,8 @@ auth.factory("Auth", function($http, $q, AuthToken){
 		AuthToken.setToken();
 	};
 
-	// Check if user is logged in
+
+	// Check if user is Logged In
 	authFactory.isLoggedIn = function(){
 		if(AuthToken.getToken()){
 			return true;
@@ -41,10 +42,13 @@ auth.factory("Auth", function($http, $q, AuthToken){
 		}
 	};
 
+
 	// Get User Info
 	authFactory.getUser = function(){
 		if(AuthToken.getToken() ){
-			return $http.get('/api/me');
+			return $http.get('/api/me').then(function(user){
+				return user.data;
+			});
 		}else{
 			return $q.reject({message: "User has Invalid Token."});
 		}

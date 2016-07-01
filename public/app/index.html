@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Agronization</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/angular-material.min.css">
     <link href="assets/fa/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link href="style.css" rel="stylesheet">
@@ -19,13 +20,22 @@
     <script src="assets/js/smooth-scroll.min.js"></script>
     <script src="assets/js/morphext.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="https://maps.google.com/maps/api/js?libraries=places"></script>
 
     <!-- Angular Assets -->
     <script type="text/javascript" src="lib/js/angular.min.js"></script>
     <script type="text/javascript" src="lib/js/angular-route.min.js"></script>
     <script type="text/javascript" src="lib/js/ng-map.min.js"></script>
     <script type="text/javascript" src="lib/js/ng-file-upload.min.js"></script>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script type="text/javascript" src="lib/js/angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-aria.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script type="text/javascript" src="lib/js/angular-material.min.js"></script>
+
     <!-- Services -->
     <script type="text/javascript" src="services/authservice.js"></script>
     <script type="text/javascript" src="services/agroservice.js"></script>
@@ -33,6 +43,7 @@
     <script type="text/javascript" src="controllers/mainctrl.js"></script>
     <script type="text/javascript" src="controllers/agroctrl.js"></script>
     <script type="text/javascript" src="controllers/testctrl.js"></script>
+    <script type="text/javascript" src="controllers/dashctrl.js"></script>
     <script type="text/javascript" src="approute.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
@@ -48,16 +59,17 @@
                             <span class="sr-only">Toggle navigation</span>
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="#">Agronization</a>
+                        <a class="navbar-brand" href="/">Agronization</a>
                     </div>
             
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/index"><i class="fa fa-home"></i> Home</a></li>
+                            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                             <li ng-if="main.LoggedIn"><a href="/submit-listings"><i class="fa fa-cloud-upload"></i> Submit Listing</a></li>
                             <li ng-if="!main.LoggedIn"><a href="/login"><i class="fa fa-sign-in"></i> Login</a></li>
-                            <li ng-if="main.LoggedIn"><a href="/logout" ng-click="main.doLogout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            <li ng-if="main.isAdmin"><a href="/dashboard"><i class="fa fa-dashcube"></i> Dashboard</a></li>
+                            <li ng-if="main.LoggedIn"><a href="/" ng-click="main.doLogout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>
@@ -73,6 +85,28 @@
 <div class="main-content-wrapper">
     <div ng-view></div>
 </div>
+
+<!-- <md-fab-toolbar class="fabicon" md-open="demo.isOpen" count="demo.count" md-direction="{{demo.selectedDirection}}">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary">
+        <md-icon md-svg-src="images/icons/menu.svg"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools">
+        <md-button aria-label="comment" class="md-icon-button">
+          <md-icon md-svg-src="images/icons/ic_comment_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="label" class="md-icon-button">
+          <md-icon md-svg-src="images/icons/ic_label_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="photo" class="md-icon-button">
+          <md-icon md-svg-src="images/icons/ic_photo_24px.svg"></md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar> -->
+
 
 <!-- footer wrapper -->
 <div class="footer-bottom-wrapper">
