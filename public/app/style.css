@@ -21,8 +21,9 @@ Tags:
 #menu-main-menu { margin-right: 120px; }
 
 .navbar-default { background: none; border: 0; }
-.navbar-default .navbar-brand { color: #eeeeee; }
-.navbar-default .navbar-brand:hover { color: #bdbdbd; }
+.navbar-default .navbar-brand { color: #fafafa; }
+.navbar-default .navbar-brand:hover { color: #fafafa; }
+.navbar-default .navbar-brand:focus { color: #fafafa; }
 
 .navbar-nav a { font-size: 14px; font-weight: 500; padding: 8px; margin-bottom: 14px; text-transform: uppercase; -webkit-transition: all cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.2s; -moz-transition: all cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.2s; transition: all cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.2s; }
 
@@ -247,9 +248,17 @@ md-tabs { padding-top: 16px; }
 .modal-body ul { border: 0; padding: 0; margin: 0; }
 .modal-body ul li { border: none; }
 
-.login-wrapper { background-color: #00BAB5; background: url("images/bg-login.jpg") no-repeat; background-attachment: fixed; background-size: cover; background-position: center; }
+.main-form.listing form { margin-top: 56px; }
 
-.register-wrapper { background-color: #00BAB5; background: url("images/bg-signup.jpg") no-repeat; background-attachment: fixed; background-size: cover; background-position: center; }
+.login-wrapper { background: url("images/bg-login.jpg") no-repeat #191919; background-attachment: fixed; background-size: cover; background-position: center; }
+
+.register-wrapper { background: url("images/bg-signup.jpg") no-repeat #191919; background-attachment: fixed; background-size: cover; background-position: center; }
+
+.form-wrapper { background: url("images/submit-listing-bg.jpg") no-repeat #191919; background-attachment: fixed; background-size: cover; background-position: center; }
+
+.main-form.listing { -webkit-box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12); box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12); -webkit-box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12); box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12); }
+
+.content-wrapper { background: #e3e3e3; }
 
 /*========================================================================
 ****************************  Responsive  *******************************

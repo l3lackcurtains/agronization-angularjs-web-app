@@ -8,10 +8,14 @@
 	background: none;
 	border: 0;
 	.navbar-brand{
-		color: $color7;
+		color: $color9;
 		&:hover{
-			color: $color5;
+			color: $color9;
 		}
+		&:focus{
+			color: $color9;
+		}
+
 	}
 }
 .navbar-nav{

@@ -12,7 +12,6 @@ main.controller("MainController", function($scope, $rootScope, $location,Auth, N
 
 	Auth.getUser().then(function(user){
 		$scope.currentUser = user;
-		console.log(user);
 		if(user.is_admin){
 			main.isAdmin = true;
 		}else{

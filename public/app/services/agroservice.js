@@ -41,7 +41,7 @@ agroser.factory('Agro', function($http){
 	
 	
 
-	agroFactory.postAgro = function(name, type, desc, location, phone_number, email, website, location_lat, location_lan, image){
+	agroFactory.postAgro = function(name, type, desc, location, phone_number, email, website, location_lat, location_lan, image, user_id, posted_by){
 
 		return $http.post('/api/agro', {
 			org_name: name,
@@ -53,14 +53,16 @@ agroser.factory('Agro', function($http){
 			org_website: website,
 			org_location_lat: location_lat,
 			org_location_lan: location_lan,
-			org_image: image
+			org_image: image,
+			user_id: user_id,
+			posted_by: posted_by
 		}).success(function(data){
 			console.log("Organization submitted successfully.");
 			return data;
 		});
 	};
 
-	agroFactory.putAgro = function(id, name, type, desc, location, phone_number, email, website, location_lat, location_lan, image){
+	agroFactory.putAgro = function(id, name, type, desc, location, phone_number, email, website, location_lat, location_lan, image, approve){
 
 		return $http.put('/api/agro/'+id, {
 			org_name: name,
@@ -72,24 +74,33 @@ agroser.factory('Agro', function($http){
 			org_website: website,
 			org_location_lat: location_lat,
 			org_location_lan: location_lan,
-			org_image: image
+			org_image: image,
+			is_approved: approve
 		}).success(function(data){
 			console.log("Organization Edited successfully.");
 			return data;
 		});
 	};
 
-	agroFactory.approveAgro = function(id, status, name, type, desc, location){
-		return $http.put('/api/agro/'+id, {
-			org_name: name,
-			org_type: type,
-			org_desc: desc,
-			org_location: location,
-			is_approved: status
+	agroFactory.putEvent = function(id, name, type, desc, location, time,  phone_number, email, website, location_lat, location_lan, image, approve){
+
+		return $http.put('/api/event/'+id, {
+			ev_name: name,
+			ev_type: type,
+			ev_desc: desc,
+			ev_location: location,
+			ev_time: time,
+			ev_phone_number: phone_number,
+			ev_email: email,
+			ev_website: website,
+			ev_location_lat: location_lat,
+			ev_location_lan: location_lan,
+			ev_image: image,
+			is_approved: approve
 		}).success(function(data){
+			console.log("Event Edited successfully.");
 			return data;
 		});
 	};
-
 	return agroFactory;
 });

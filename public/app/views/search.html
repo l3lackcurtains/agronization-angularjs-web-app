@@ -41,17 +41,17 @@
                 <md-tab label="Events">
                     <md-content class="md-padding">
                         <div class="row">
-                            <div class="col-sm-6" ng-repeat="ag in agro.agroData.message">
-                                <div class="post-box" ng-click="agro.gotoAgroDetail(ag._id, ag.org_name)">
+                            <div class="col-sm-6" ng-repeat="evnt in agro.eventData.message">
+                                <div class="post-box" ng-click="agro.gotoAgroDetail(evnt._id, evnt.org_name)">
                                     <div class="post-img">
-                                        <img ng-src="{{ag.org_image}}" alt="">
+                                        <img ng-src="{{evnt.org_image}}" alt="">
                                     </div>
                                     <div class="post-type">
-                                        <p>{{ag.org_type}}</p>
+                                        <p>{{evnt.ev_type}}</p>
                                     </div>
                                     <div class="post-meta">
-                                        <h4>{{ag.org_name}}</h4>
-                                        <p><i class="fa fa-location-arrow"></i>{{ag.org_location}}</p>
+                                        <h4>{{evnt.ev_name}}</h4>
+                                        <p><i class="fa fa-location-arrow"></i>{{evnt.org_location}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -2,86 +2,144 @@
     <div class="container">
         <div class="col-md-10 col-md-offset-1 col-sm-12">
             <div class="main-form listing">
-                <header><h2>Submit Your organization listing</h2></header>
-                <form name="agroPost.agroPost_form" ng-submit="agroPost.doPostAgro()" novalidate>
-                    <ul>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Organization Name</label>
-                                <input required md-no-asterisk name="name" ng-model="agroPost.agroData.name">
-                                <div ng-messages="agroPost.agroPost_form.name.$error">
-                                    <div ng-message="required">This is required.</div>
-                                </div>
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Organization type</label>
-                                <input required md-no-asterisk name="type" ng-model="agroPost.agroData.type">
-                                <div ng-messages="agroPost.agroPost_form.type.$error">
-                                    <div ng-message="required">This is required.</div>
-                                </div>
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Organization Description</label>
-                                <textarea name="desc" rows="20" md-select-on-focus ng-model="agroPost.agroData.desc"></textarea>
-                                <div ng-messages="agroPost.agroPost_form.desc.$error">
-                                    <div ng-message="required">This is required.</div>
-                                </div>
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Phone Number</label>
-                                <input required md-no-asterisk type="number" name="ph_no" ng-model="agroPost.agroData.phone_number">
-                                <div ng-messages="agroPost.agroPost_form.ph_no.$error">
-                                    <div ng-message="required">This is required.</div>
-                                </div>
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Email</label>
-                                <input required md-no-asterisk type="email" name="email" ng-model="agroPost.agroData.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
-                                <div ng-messages="agroPost.agroPost_form.email.$error" role="alert">
-                                  <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                    Your email must be between 10 and 100 characters long and look like an e-mail address.
-                                  </div>
-                                </div>
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Website</label>
-                                <input required md-no-asterisk type="url" name="website" ng-model="agroPost.agroData.website">
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <md-input-container class="md-block">
-                                <label>Location</label>
-                                <input places-auto-complete size=80 component-restrictions="{country:'np'}" type="text" types="address" on-place-changed="agroPost.placeChanged()" placeholder="Find your location">
-                            </md-input-container>
-                        </li>
-                        <li>
-                            <ng-map default-style="false" zoom="14" center="[27.700769, 85.300140]" style="height: 100%">
-                                <marker title="Map" position="{{agroPost.markerPos}}" draggable="true" centered="true" on-dragend="agroPost.dosmth($event)"></marker>
-                            </ng-map>
-                        </li>
-                        <li><input class="inputfile cplus-input2" type="file" ngf-select ng-model="agroPost.file" name="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="10MB" required/>
-                          <button type="button" class="cplus-input2 upload-btn" ng-click="agroPost.submitImg()">Upload Image {{agroPost.progress}}</button>
-                          <div class="field-helper">Cover Image of your organization</div>
-                        </li>
+                <header><h2>Submit Your organization and Event listing</h2></header>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Organizations">
+                        <form name="agroPost.agroPost_form" ng-submit="agroPost.doPostAgro()" novalidate>
+                            <ul>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Organization Name</label>
+                                        <input required md-no-asterisk name="name" ng-model="agroPost.agroData.name">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Organization type</label>
+                                        <input required md-no-asterisk name="type" ng-model="agroPost.agroData.type">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Organization Description</label>
+                                        <textarea required md-no-asterisk name="desc" rows="20" md-select-on-focus ng-model="agroPost.agroData.desc"></textarea>
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Phone Number</label>
+                                        <input required md-no-asterisk type="text" name="ph_no" ng-model="agroPost.agroData.phone_number">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Email</label>
+                                        <input required md-no-asterisk type="email" name="email" ng-model="agroPost.agroData.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                        <div ng-messages="agroPost.agroPost_form.email.$error" role="alert">
+                                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                          </div>
+                                        </div>
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Website</label>
+                                        <input required md-no-asterisk type="url" name="website" ng-model="agroPost.agroData.website">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Location</label>
+                                        <input places-auto-complete size=80 component-restrictions="{country:'np'}" type="text" types="address" on-place-changed="agroPost.placeChanged()" placeholder="Find your location">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <ng-map default-style="false" zoom="14" center="[27.700769, 85.300140]" style="height: 100%">
+                                        <marker title="Map" position="{{agroPost.markerPos}}" draggable="true" centered="true" on-dragend="agroPost.dosmth($event)"></marker>
+                                    </ng-map>
+                                    <div class="field-helper">Get your location from auto sugession and adjust marker if needed.</div>
+                                </li>
+                                <li><input class="inputfile cplus-input2" type="file" ngf-select ng-model="agroPost.file" name="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="10MB" required/>
+                                  <button type="button" class="cplus-input2 upload-btn" ng-click="agroPost.submitImg()">Upload Image {{agroPost.progress}}%</button>
+                                  <div class="field-helper">Cover Image of your organization</div>
+                                </li>
 
-                        <li><input class="inputfile cplus-input2 upload-btn" type="file" ngf-select ng-model="agroPost.file" name="docs" ngf-pattern="'.pdf,.docx, .doc, .jpg/*,!.jog'" ngf-max-size="10MB"/>
-                          <button type="button" class="cplus-input2" ng-click="agroPost.submitDoc()">Upload Docs </button>
-                          <div class="field-helper">Verification document of your organization registration.</div>
-                        </li>
-                        <li><input type="submit" class="cplus-submit" value="Submit"></li>
-                        <li><div class="form-meta"><a href="login.html">Your listing will be posted after being approved.</a></div></li>
-                    </ul>
-                </form>
+                                <li><input class="inputfile cplus-input2 upload-btn" type="file" ngf-select ng-model="agroPost.file" name="docs" ngf-pattern="'.pdf,.docx, .doc, .jpg/*,!.jog'" ngf-max-size="10MB"/>
+                                  <button type="button" class="cplus-input2" ng-click="agroPost.submitDoc()">Upload Docs </button>
+                                  <div class="field-helper">Verification document of your organization registration.</div>
+                                </li>
+                                <li><input type="submit" class="cplus-submit" value="Submit"></li>
+                                <li><div class="form-meta"><a href="login.html">Your listing will be posted after being approved.</a></div></li>
+                            </ul>
+                        </form>
+                   </md-tab>
+                   <md-tab label="Events">
+                        <form name="agroPost.eventPost_form" ng-submit="agroPost.doPostEvent()" novalidate>
+                            <ul>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Event Name</label>
+                                        <input required md-no-asterisk name="name" ng-model="agroPost.eventData.name">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Event type</label>
+                                        <input required md-no-asterisk name="type" ng-model="agroPost.eventData.type">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Event Description</label>
+                                        <textarea required md-no-asterisk name="desc" rows="20" md-select-on-focus ng-model="agroPost.eventData.desc"></textarea>
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Phone Number</label>
+                                        <input required md-no-asterisk type="text" name="ph_no" ng-model="agroPost.eventData.phone_number">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Email</label>
+                                        <input required md-no-asterisk type="email" name="email" ng-model="agroPost.eventData.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                        <div ng-messages="agroPost.agroPost_form.email.$error" role="alert">
+                                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                          </div>
+                                        </div>
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Website</label>
+                                        <input required md-no-asterisk type="url" name="website" ng-model="agroPost.agroData.website">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <md-input-container class="md-block">
+                                        <label>Location</label>
+                                        <input places-auto-complete size=80 component-restrictions="{country:'np'}" type="text" types="address" on-place-changed="agroPost.placeChanged()" placeholder="Find your location">
+                                    </md-input-container>
+                                </li>
+                                <li>
+                                    <ng-map default-style="false" zoom="14" center="[27.700769, 85.300140]" style="height: 100%">
+                                        <marker title="Map" position="{{agroPost.markerPos}}" draggable="true" centered="true" on-dragend="agroPost.dosmth($event)"></marker>
+                                    </ng-map>
+                                    <div class="field-helper">Get your location from auto sugession and adjust marker if needed.</div>
+                                </li>
+                                <li><input class="inputfile cplus-input2" type="file" ngf-select ng-model="agroPost.file" name="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="10MB" required/>
+                                  <button type="button" class="cplus-input2 upload-btn" ng-click="agroPost.submitImg()">Upload Image {{agroPost.progress}}%</button>
+                                  <div class="field-helper">Cover Image of your Event</div>
+                                </li>
+                                <li><input type="submit" class="cplus-submit" value="Submit"></li>
+                                <li><div class="form-meta"><a href="login.html">Your listing will be posted after being approved.</a></div></li>
+                            </ul>
+                        </form>
+                   </md-tab>
+                </md-tabs>
             </div>
         </div>
     </div>

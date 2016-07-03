@@ -203,6 +203,7 @@ router.route('/event/:id')
 		data.ev_desc = req.body.ev_desc;
 		data.ev_type = req.body.ev_type;
 		data.ev_location = req.body.ev_location;
+		data.ev_time = req.body.ev_time;
 		data.ev_location_lat = req.body.ev_location_lat;
 		data.ev_location_lan = req.body.ev_location_lan;
 		data.ev_phone_number = req.body.ev_phone_number;
@@ -213,9 +214,9 @@ router.route('/event/:id')
 
 		data.save(function(err, data){
 			if(err){
-				res.send(err);
+			res.send({status: false, message: err});
 			}
-			res.json(data);
+			res.json({status: true, message: data});
 		});
 	});
 })

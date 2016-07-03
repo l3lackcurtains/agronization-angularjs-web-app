@@ -4,14 +4,28 @@
             <div class="col-md-6 col-md-offset-3 col-sm-12">
                 <div class="main-form">
                     <header><h2>Register</h2></header>
-                    <form ng-submit="register.doRegister()">
+                    <form ng-submit="register.doRegister()" novalidate>
                         <ul>
-                            <li><input type="text" name="name" class="cplus-input2" placeholder="Full Name" ng-model="register.registerData.name"></li>
-                            <li><input type="text" name="email" class="cplus-input2" placeholder="Email" ng-model="register.registerData.email"></li>
-                            <li><input type="password" name="password" class="cplus-input2" placeholder="Password" ng-model="register.registerData.password"></li>
-                            <li><input type="password" name="password2" class="cplus-input2" placeholder="Password again"></li>
+                            <li>
+                                <md-input-container class="md-block">
+                                    <label>Full Name</label>
+                                    <input required md-no-asterisk type="text" name="name" ng-model="register.registerData.name">
+                                </md-input-container>
+                            </li>
+                            <li>
+                                <md-input-container class="md-block">
+                                    <label>Email</label>
+                                    <input required md-no-asterisk type="text" name="email" ng-model="register.registerData.email">
+                                </md-input-container>
+                            </li>
+                            <li>
+                                <md-input-container class="md-block">
+                                    <label>Password</label>
+                                    <input required md-no-asterisk type="password" name="password" ng-model="register.registerData.password">
+                                </md-input-container>
+                            </li>
                             <li><input type="submit" class="cplus-submit" value="Register"></li>
-                            <li><div class="form-meta"><a href="/login"><-- Back</a></div></li>
+                            <li><div class="form-meta"><a href="/login"><i class="fa fa-arrow-left"></i> Back</a></div></li>
                         </ul>
                     </form>
                 </div>

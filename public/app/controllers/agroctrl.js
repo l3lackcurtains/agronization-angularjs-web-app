@@ -1,7 +1,7 @@
 var agroctrl = angular.module('agroCtrl', ['ngFileUpload']);
 // var geocoder = new google.maps.Geocoder;
 
-agroctrl.controller('AgroController', function(Agro, $location){
+agroctrl.controller('AgroController', function(Agro, $scope, $location){
     var agroGet = this;
 
 	agroGet.agroMarker_lat = [];
@@ -34,6 +34,7 @@ agroctrl.controller('AgroSearchController', function($scope,  Agro, $routeParams
     var agroGet = this;
     agroGet.query = $routeParams.query;
     agroGet.agro_query = '';
+
     Agro.getAgros($routeParams.query).success(function(data){
         agroGet.agrosData = data;
     });
@@ -135,7 +136,7 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
                 agroPost.agroData.desc, agroPost.agroData.location,
                 agroPost.agroData.phone_number, agroPost.agroData.email,
                 agroPost.agroData.website, agroPost.agroData.location_lat,
-                agroPost.agroData.location_lan, agroPost.agroData.image)
+                agroPost.agroData.location_lan, agroPost.agroData.image, $scope.$parent.currentUser._id, $scope.$parent.currentUser.name)
     		.success(function(data){
     			if(data.status){
     				$location.path('/');
