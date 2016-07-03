@@ -26,7 +26,7 @@ app.use(cookieParser());
 var port = process.env.PORT || 3000;
 
 // Database connection
-mongoose.connect( config.database , function(err, database){
+mongoose.connect( config.database_local , function(err, database){
 	console.log("Connected to database successfully.");
 });
 app.use(morgan('dev'));
