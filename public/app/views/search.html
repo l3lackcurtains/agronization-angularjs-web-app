@@ -22,7 +22,7 @@
                     <md-content class="md-padding">
                         <div class="row">
                             <div class="col-sm-6" ng-repeat="agdata in ags.agrosData.message">
-                                <div class="post-box" ng-click="ags.gotoAgroDetail(ag._id, ag.org_name)">
+                                <div class="post-box" ng-click="ags.gotoAgroDetail(agdata._id, agdata.org_name)">
                                     <div class="post-img">
                                         <img ng-src="{{agdata.org_image}}" alt="">
                                     </div>
@@ -42,7 +42,7 @@
                     <md-content class="md-padding">
                         <div class="row">
                             <div class="col-sm-6" ng-repeat="evnt in ags.eventData.message">
-                                <div class="post-box" ng-click="ags.gotoAgroDetail(evnt._id, evnt.org_name)">
+                                <div class="post-box" ng-click="ags.gotoEventDetail(evnt._id, evnt.org_name)">
                                     <div class="post-img">
                                         <img ng-src="{{evnt.org_image}}" alt="">
                                     </div>

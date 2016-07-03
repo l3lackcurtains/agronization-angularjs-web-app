@@ -25,7 +25,10 @@ route.config(function($routeProvider, $locationProvider){
 			templateUrl: "views/test.html"
 		})
 		.when('/agriculture/:id/:name', {
-			templateUrl: "views/listing.html"
+			templateUrl: "views/listing-agro.html"
+		})
+		.when('/agriculture/event/:id/:name', {
+			templateUrl: "views/listing-event.html"
 		})
 		.when('/dashboard', {
 			templateUrl: "views/admin/dashboard.html"

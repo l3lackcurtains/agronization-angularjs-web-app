@@ -7,7 +7,9 @@ agroctrl.controller('AgroController', function(Agro, $scope, $location){
 	agroGet.agroMarker_lat = [];
 	agroGet.agroMarker_lan = [];
 	agroGet.agroData = {};
+    agroGet.eventData = {};
     agroGet.agro_query = '';
+
 	Agro.getAgro().success(function(data){
 		agroGet.agroData = data;
 	});
@@ -27,6 +29,9 @@ agroctrl.controller('AgroController', function(Agro, $scope, $location){
     agroGet.gotoAgroDetail = function(id, name){
         $location.path('/agriculture/'+id+'/'+name);
     };
+    agroGet.gotoEventDetail = function(id, name){
+        $location.path('/agriculture/event/'+id+'/'+name);
+    };
 
 });
 
@@ -36,7 +41,6 @@ agroctrl.controller('AgroSearchController', function($scope,  Agro, $routeParams
     agroGet.agro_query = '';
 
     Agro.getAgros($routeParams.query).success(function(data){
-        console.log(data);
         agroGet.agrosData = data;
     });
 
@@ -47,6 +51,10 @@ agroctrl.controller('AgroSearchController', function($scope,  Agro, $routeParams
     agroGet.gotoAgroDetail = function(id, name){
         $location.path('/agriculture/'+id+'/'+name);
     };
+    agroGet.gotoEventDetail = function(id, name){
+        $location.path('/agriculture/event/'+id+'/'+name);
+    };
+
     agroGet.doSearch = function(){
         if(agroGet.agro_query == ''){
              $location.path('/agriculture');
@@ -61,6 +69,9 @@ agroctrl.controller('AgroSingleController', function($scope,  Agro, $routeParams
     Agro.getSingleAgro($routeParams.id).success(function(data){
         agroSingleGet.agroData = data;
     });
+    Agro.getSingleEvent($routeParams.id).success(function(data){
+        agroSingleGet.eventData = data;
+    });
 
 });
 
@@ -68,6 +79,8 @@ agroctrl.controller('AgroSingleController', function($scope,  Agro, $routeParams
 agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $location){
     var agroPost = this;
     agroPost.agroData = {};
+    agroPost.eventData = {};
+
     agroPost.showInfo = function(info) {
             $scope.$parent.showInfo(info);
         }
@@ -110,7 +123,25 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
         agroPost.place = this.getPlace();
         agroPost.map.setCenter(agroPost.place.geometry.location);
         agroPost.markerPos = agroPost.place.geometry.location;
+
         agroPost.agroData.location = agroPost.place.formatted_address;
+
+        agroPost.eventData.location = agroPost.place.formatted_address;
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+
+                agroPost.agroData.location_lat = pos.lat;
+                agroPost.agroData.location_lan = pos.lng; 
+
+                agroPost.eventData.location_lat = pos.lat;
+                agroPost.eventData.location_lan = pos.lng;    
+            });
+          }
 
         NgMap.getMap().then(function(map) {
             agroPost.map = map;
@@ -128,6 +159,9 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
 
         agroPost.agroData.location_lat = lat;
         agroPost.agroData.location_lan = lng;
+
+        agroPost.eventData.location_lat = lat;
+        agroPost.eventData.location_lan = lng;
     }
    
     // Post Agro Data
@@ -148,5 +182,26 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
     			}
     		});
     	};
+
+
+
+
+        // Post Event Datas
+        agroPost.doPostEvent = function(){
+            Agro.postEvent(agroPost.eventData.name, agroPost.eventData.type,
+                agroPost.eventData.desc, agroPost.eventData.time,  agroPost.eventData.location,
+                agroPost.eventData.phone_number, agroPost.eventData.email,
+                agroPost.eventData.website, agroPost.eventData.location_lat,
+                agroPost.eventData.location_lan, agroPost.eventData.image, $scope.$parent.currentUser._id, $scope.$parent.currentUser.name)
+            .success(function(data){
+                if(data.status){
+                    $location.path('/');
+                    agroPost.showInfo("Event data submitted Successfully.");
+                }else{
+                    agroPost.error = data.message;
+                    agroPost.showInfo("Something went wrong. Try again.");
+                }
+            });
+        };
 
 });

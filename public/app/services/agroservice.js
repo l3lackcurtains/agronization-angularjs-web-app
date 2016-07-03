@@ -62,6 +62,28 @@ agroser.factory('Agro', function($http){
 		});
 	};
 
+	agroFactory.postEvent = function(name, type, desc, time, location, phone_number, email, website, location_lat, location_lan, image, user_id, posted_by){
+
+		return $http.post('/api/event', {
+			ev_name: name,
+			ev_type: type,
+			ev_desc: desc,
+			ev_time: time,
+			ev_location: location,
+			ev_phone_number: phone_number,
+			ev_email: email,
+			ev_website: website,
+			ev_location_lat: location_lat,
+			ev_location_lan: location_lan,
+			ev_image: image,
+			user_id: user_id,
+			posted_by: posted_by
+		}).success(function(data){
+			console.log("Organization submitted successfully.");
+			return data;
+		});
+	};
+
 	agroFactory.putAgro = function(id, name, type, desc, location, phone_number, email, website, location_lat, location_lan, image, approve){
 
 		return $http.put('/api/agro/'+id, {
@@ -77,7 +99,6 @@ agroser.factory('Agro', function($http){
 			org_image: image,
 			is_approved: approve
 		}).success(function(data){
-			console.log("Organization Edited successfully.");
 			return data;
 		});
 	};

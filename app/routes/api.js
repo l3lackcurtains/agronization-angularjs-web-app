@@ -211,6 +211,7 @@ router.route('/event/:id')
 		data.ev_email = req.body.ev_email;
 		data.ev_website = req.body.ev_website;
 		data.ev_image = req.body.ev_image;
+		data.is_approved = req.body.is_approved;
 
 		data.save(function(err, data){
 			if(err){

@@ -1,0 +1,77 @@
+<div ng-controller="AgroSingleController as eventSingle">
+<div class="listing-header-wrapper" style='background: #191919 url("{{eventSingle.eventData.message.ev_image}}") no-repeat;  background-attachment: fixed;  background-size: cover;  background-position: center; '>
+    <div class="listing-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-xs-12">
+                <p class="post-type">{{eventSingle.eventData.message.ev_type}}</p>
+                    <h3>{{eventSingle.eventData.message.ev_name}}</h3>
+                    <p><i class="fa fa-location-arrow"></i> {{eventSingle.eventData.message.ev_location}}</p>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <ul>
+                        <li><i class="fa fa-thumbs-up"></i> Claim Listing</li>
+                        <li><i class="fa fa-share"></i> Share </li>
+                    </ul>
+                    <button class="cplus-button1">Write a Review</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="listing-content">
+                    <h4>Description: </h4>
+                    <p>{{eventSingle.eventData.message.ev_desc}}</p>
+                </div>
+                <div class="listing-contact">
+                    <h4>Contact Info: </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-phone"></i>
+                                <p>{{eventSingle.eventData.message.ev_phone_number}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-envelope"></i>
+                                <p>{{eventSingle.eventData.message.ev_email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box">
+                                <i class="fa fa-laptop"></i>
+                                <p>{{eventSingle.eventData.message.ev_website}}</p>
+                            </div>
+                        </div>      
+                    </div>                 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="listing-widget">
+                    <div class="listing-map">
+                        <ng-map default-style="false" zoom="12" center="[{{eventSingle.eventData.message.ev_location_lat}},{{eventSingle.eventData.message.ev_location_lan}}]" style="height: 100%">
+                            <custom-marker title="{{eventSingle.eventData.message.ev_name}}" position="{{eventSingle.eventData.message.ev_location_lat}},{{eventSingle.eventData.message.ev_location_lan}}">
+                                <div>
+                                  <img src="images/icons/map-marker.png" />
+                                </div>
+                            </custom-marker>
+                        </ng-map>
+                    </div>
+                </div> 
+                <div class="listing-widget">
+                    <div class="listing-author">
+                        <img src="images/5.jpg" alt="">
+                        <h3>{{eventSingle.eventData.message.posted_by}}</h3>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </div>       
+</div>
+</div>
