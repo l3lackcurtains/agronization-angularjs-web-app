@@ -32,7 +32,7 @@
                             <div class="col-sm-6" ng-repeat="ag in agro.agroData.message">
                                 <div class="post-box" ng-click="agro.gotoAgroDetail(ag._id, ag.org_name)">
                                     <div class="post-img">
-                                        <img ng-src="{{ag.ev_image}}" alt="">
+                                        <img ng-src="{{ag.org_image}}" alt="">
                                     </div>
                                     <div class="post-type">
                                         <p>{{ag.org_type}}</p>
@@ -52,7 +52,7 @@
                             <div class="col-sm-6" ng-repeat="evnt in agro.eventData.message">
                                 <div class="post-box" ng-click="agro.gotoEventDetail(evnt._id, evnt.ev_name)">
                                     <div class="post-img">
-                                        <img ng-src="{{evnt.org_image}}" alt="">
+                                        <img ng-src="{{evnt.ev_image}}" alt="">
                                     </div>
                                     <div class="post-type">
                                         <p>{{evnt.ev_type}}</p>
