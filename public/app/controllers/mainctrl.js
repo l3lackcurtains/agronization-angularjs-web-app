@@ -1,12 +1,45 @@
 var main = angular.module('mainCtrl', []);
 
-main.controller("MainController", function($scope, $rootScope, $location,Auth, NgMap, $mdToast){
+main.controller("MainController", function($scope, $rootScope, $location,Auth, NgMap, $mdToast,$mdDialog, $mdMedia){
 	var main = this;
 
 	// Is Logged In
 	main.LoggedIn = Auth.isLoggedIn();
 
-	
+	// Material dialog box
+    $scope.showShare = function(ev) {
+    $mdDialog.show(
+      $mdDialog.alert({
+        title: 'Attention',
+        template: '<md-content flex layout-padding>'
+        +'SHARE ON: <a href="#"socialshare socialshare-provider="twitter" socialshare-text="Agronization Application" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="https://agronization.herokuapp.com"><i class="fa fa-twitter"></i></a>'
+        +'<a href="#"socialshare socialshare-provider="facebook" socialshare-text="Agronization Application" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="https://agronization.herokuapp.com"><i class="fa fa-facebook"></i></a>'
+        +'<a href="#"socialshare socialshare-provider="google" socialshare-text="Agronization Application" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="https://agronization.herokuapp.com"><i class="fa fa-google"></i></a>'
+
+        +'</md-content>',
+        ok: 'Close'
+      })
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .ok('Got it!')
+        .targetEvent(ev)
+    );
+  };
+
+      $scope.showClaim = function(ev) {
+	    $mdDialog.show(
+	      $mdDialog.alert({
+	        title: 'Claim Listing',
+	        textContent: 'Claim Listing..',
+	        ok: 'Close'
+	      })
+	        .parent(angular.element(document.querySelector('#popupContainer')))
+	        .clickOutsideToClose(true)
+	        .ok('Got it!')
+	        .targetEvent(ev)
+	    );
+	  };
+
 	// Check if user is Admin or not
 
 
