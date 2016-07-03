@@ -41,7 +41,7 @@ agroser.factory('Agro', function($http){
 	
 	
 
-	agroFactory.postAgro = function(name, type, desc, location, phone_number, email, website, location_lat, location_lan, image, user_id, posted_by){
+	agroFactory.postAgro = function(name, type, desc, location, phone_number, email, website, location_lat, location_lan, image, doc, user_id, posted_by){
 
 		return $http.post('/api/agro', {
 			org_name: name,
@@ -54,6 +54,7 @@ agroser.factory('Agro', function($http){
 			org_location_lat: location_lat,
 			org_location_lan: location_lan,
 			org_image: image,
+			org_doc: doc,
 			user_id: user_id,
 			posted_by: posted_by
 		}).success(function(data){

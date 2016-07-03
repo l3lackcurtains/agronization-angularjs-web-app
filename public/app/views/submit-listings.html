@@ -65,8 +65,8 @@
                                   <div class="field-helper">Cover Image of your organization</div>
                                 </li>
 
-                                <li><input class="inputfile cplus-input2 upload-btn" type="file" ngf-select ng-model="agroPost.file" name="docs" ngf-pattern="'.pdf,.docx, .doc, .jpg/*,!.jog'" ngf-max-size="10MB"/>
-                                  <button type="button" class="cplus-input2" ng-click="agroPost.submitDoc()">Upload Docs </button>
+                                <li><input class="inputfile cplus-input2 upload-btn" type="file" ngf-select ng-model="agroPost.doc" name="doc" ngf-pattern="'image/*,application/pdf'" ngf-max-size="10MB"/>
+                                  <button type="button" class="cplus-input2" ng-click="agroPost.submitDoc()">Upload Document </button>
                                   <div class="field-helper">Verification document of your organization registration.</div>
                                 </li>
                                 <li><input type="submit" class="cplus-submit" value="Submit"></li>

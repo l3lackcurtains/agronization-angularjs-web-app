@@ -87,12 +87,13 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
 
     agroPost.submitImg = function(){
         if (agroPost.agroPost_form.image.$valid && agroPost.file) { 
-            agroPost.upload(agroPost.file); 
+            agroPost.upload(agroPost.file);
         }
     }
     agroPost.submitDoc = function(){ 
-        if (agroPost.agroPost_form.docs.$valid && agroPost.file) { 
-            agroPost.upload(agroPost.file); 
+        if (agroPost.agroPost_form.doc.$valid && agroPost.doc) { 
+            agroPost.uploaddoc(agroPost.doc); 
+            console.log(agroPost.doc);
         }
     }
     agroPost.upload = function (file) {
@@ -111,6 +112,24 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             agroPost.progress = progressPercentage;
+        });
+    };
+
+    agroPost.uploaddoc = function (file) {
+        Upload.upload({
+            url: '/upload', 
+            data:{file: file}
+        }).then(function (resp) {
+            if(resp.data.status === true){ 
+                var doc_url = $location.protocol() + "://" + $location.host() + ":" + $location.port()+ "/uploads/"+ resp.data.message.filename;
+                agroPost.agroData.doc = doc_url;
+            } else {
+                console.log('an error occured');
+            }
+        }, function (resp) { 
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            //var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         });
     };
 
@@ -171,7 +190,7 @@ agroctrl.controller('AgroPostController',function(Upload, $scope, Agro, NgMap, $
                 agroPost.agroData.desc, agroPost.agroData.location,
                 agroPost.agroData.phone_number, agroPost.agroData.email,
                 agroPost.agroData.website, agroPost.agroData.location_lat,
-                agroPost.agroData.location_lan, agroPost.agroData.image, $scope.$parent.currentUser._id, $scope.$parent.currentUser.name)
+                agroPost.agroData.location_lan, agroPost.agroData.image, agroPost.agroData.doc, $scope.$parent.currentUser._id, $scope.$parent.currentUser.name)
     		.success(function(data){
     			if(data.status){
     				$location.path('/');
