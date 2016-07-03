@@ -7,6 +7,11 @@
               <img src="images/icons/map-marker.png" />
             </div>
         </custom-marker>
+        <custom-marker ng-repeat="evnt in agro.eventData.message" title="{{evnt.ev_name}}" position="{{evnt.ev_location_lat}},{{evnt.ev_location_lan}}">
+            <div>
+              <img src="images/icons/map-marker2.png" />
+            </div>
+        </custom-marker>
     </ng-map>
 </div>
 <div class="content-wrapper">
