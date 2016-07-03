@@ -36,6 +36,7 @@ agroctrl.controller('AgroSearchController', function($scope,  Agro, $routeParams
     agroGet.agro_query = '';
 
     Agro.getAgros($routeParams.query).success(function(data){
+        console.log(data);
         agroGet.agrosData = data;
     });
 
